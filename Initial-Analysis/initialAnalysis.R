@@ -36,7 +36,7 @@ paramsSSm$bootstrap=F
 paramsSSm$SSpenalty_fac=0.1
 paramsSSm$SScontrolPenalty_fac=100
 
-opt_pars=parEstimationLBode(cnolist, model, method="essm", ode_parameters=ode_parameters, paramsSSm=paramsSSm)
+opt_pars_initial=parEstimationLBode(cnolist, model, method="essm", ode_parameters=ode_parameters, paramsSSm=paramsSSm)
 save(opt_pars_initial, file = "../Results/Best-Solutions/opt_pars_initial.RData")
 
 source(file = "../Public/map2cys.R")
