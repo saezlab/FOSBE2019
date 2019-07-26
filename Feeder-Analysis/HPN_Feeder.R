@@ -30,7 +30,7 @@ plotModel(model = integratedModel$model, CNOlist = cnolist, indexIntegr = integr
 # essm
 paramsSSm=defaultParametersSSm()
 paramsSSm$local_solver = "DHC"
-paramsSSm$maxtime = 15000;
+paramsSSm$maxtime = 7200;
 paramsSSm$maxeval = Inf;
 paramsSSm$atol=1e-6;
 paramsSSm$reltol=1e-6;
@@ -47,7 +47,7 @@ paramsSSm$bootstrap=F
 paramsSSm$SSpenalty_fac=10
 paramsSSm$SScontrolPenalty_fac=10
 
-set.seed(5810)
+set.seed(4635)
 # set initial parameters 
 ode_parameters=createLBodeContPars(integratedModel$model, LB_n = 1, LB_k = 0,
                                    LB_tau = 0, UB_n = 4, UB_k = 1, UB_tau = 1, default_n = 3,
