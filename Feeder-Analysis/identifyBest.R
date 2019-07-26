@@ -6,7 +6,7 @@ library(readr)
 library(infotheo)
 library(igraph)
 
-load(file = "../Analysis/opt_pars_initial.RData")
+load(file = "../Results/Best-Solutions/opt_pars_initial.RData")
 load(file = "../Data/cnolist.RData")
 load(file = "../Data/model.RData")
 
@@ -33,7 +33,7 @@ for(ii in 1:length(fits)){
 }
 mm = mm[-1, ]
 
-save(mm, file = "Plots/indecesMatrix.RData")
+# save(mm, file = "Plots/indecesMatrix.RData")
 
 idxBestAIC = NULL
 idxBestBIC = NULL
@@ -46,7 +46,7 @@ bicScores = c()
 for(ii in 1:nrow(mm)){
   
   # currFile = paste0("Results/misFit_", mm[ii, 1], "/pL_", mm[ii, 2], "/res_feeder_", mm[ii, 1], "_", mm[ii, 2], "_", mm[ii, 3], ".RData")
-  currFile = paste0("Results/res_feeder_", mm[ii, 1], "_", mm[ii, 2], "_", mm[ii, 3], ".RData")
+  currFile = paste0("../Results/Cluster-Results/res_feeder_", mm[ii, 1], "_", mm[ii, 2], "_", mm[ii, 3], ".RData")
   if(file.exists(currFile)){
     
     load(file = currFile)
@@ -60,7 +60,9 @@ for(ii in 1:nrow(mm)){
       aicBest = score$AIC
       idxBestAIC = ii
       
-      save(res, file = "Plots/res_aic.RData")
+      save(res, file = "../Results/Best-Solutions/opt_pars_feeder.RData")
+      
+      # save(res, file = "Plots/res_aic.RData")
       
       # save(idxBestAIC, file = "Plots/idxBestAIC.RData")
       # 
@@ -79,7 +81,7 @@ for(ii in 1:nrow(mm)){
       bicBest = score$BIC
       idxBestBIC = ii
       
-      save(res, file = "Plots/res_bic.RData")
+      # save(res, file = "Plots/res_bic.RData")
       
       # save(idxBestBIC, file = "Plots/idxBestBIC.RData")
       # 
@@ -98,7 +100,7 @@ for(ii in 1:nrow(mm)){
       fitBest = res$Parameters$ssm_results$fbest
       idxBestFit = ii
       
-      save(res, file = "Plots/res_fit.RData")
+      # save(res, file = "Plots/res_fit.RData")
       
       # save(idxBestFit, file = "Plots/idxBestFit.RData")
       # 
