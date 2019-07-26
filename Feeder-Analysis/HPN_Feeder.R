@@ -6,23 +6,21 @@ library(readr)
 library(infotheo)
 library(igraph)
 
-load(file = "../../Data/cnolist.RData")
-load(file = "../../Data/model.RData")
-load(file = "../../Data/database.RData")
-load(file = "../../Analysis/simData.RData")
+load(file = "../Data/cnolist.RData")
+load(file = "../Data/model.RData")
+load(file = "../Data/database.RData")
+load(file = "../Results/Best-Solutions/simData_initial.RData")
 
-# model = preprocessing(data = cnolist, model = pknmodel, compression = TRUE, expansion = FALSE)
+source("../Public/computeMSE.R")
+source("../Public/computeMI.R")
+source("../Public/runDynamicFeeder.R")
+source("../Public/buildFeederObjectDynamic.R")
+source("../Public/identifyMisfitIndeces.R")
+source("../Public/map2cys.R")
+source("../Public/integrateLinks.R")
+source("../Public/preprocessingWeighted.R")
 
-source("../../Public/computeMSE.R")
-source("../../Public/computeMI.R")
-source("../../Public/runDynamicFeeder.R")
-source("../../Public/buildFeederObjectDynamic.R")
-source("../../Public/identifyMisfitIndeces.R")
-source("../../Public/map2cys.R")
-source("../../Public/integrateLinks.R")
-source("../../Public/preprocessingWeighted.R")
-
-indeces <- identifyMisfitIndeces(cnolist = cnolist, model = model, simData = simData, mseThresh = 0.02)
+indeces <- identifyMisfitIndeces(cnolist = cnolist, model = model, simData = simData, mseThresh = 0.06291897) # 0.06291897 = 5% error threshold
 object <- buildFeederObjectDynamic(model = model, cnolist = cnolist, database = database, indeces = indeces, pathLength = Inf)
 integratedModel = integrateLinks(feederObject = object, cnolist = cnolist, compression = TRUE, expansion = FALSE, database = database)
 
@@ -57,11 +55,9 @@ ode_parameters=createLBodeContPars(integratedModel$model, LB_n = 1, LB_k = 0,
                                    opt_tau = TRUE, random = TRUE)
 
 res = runDynamicFeeder(cnolist = cnolist, integratedModel = integratedModel, ode_parameters = ode_parameters, penFactor_k = 5, paramsSSm = paramsSSm)
-save(res, file = "res_feeder.RData")
-
-# plotLBodeFitness(cnolist = res$CNOList, model = res$Model, ode_parameters = res$Parameters, transfer_function = 4)
+save(res, file = "../Results/Best-Solutions/opt_pars_res_feeder.RData")
 
 attributes = map2cys(model = res$Model, cnolist = res$CNOList, opt_pars = res$Parameters)
 
-write.table(x = attributes$`Edge Attributes`, file = "edge_attributes.txt", quote = FALSE, sep = "\t", row.names = FALSE, col.names = TRUE)
-write.table(x = attributes$`Node Attributes`, file = "node_attributes.txt", quote = FALSE, sep = "\t", row.names = FALSE, col.names = TRUE)
+write.table(x = attributes$`Edge Attributes`, file = "../Results/Plots/Feeder-Model/edge_attributes_feeder.txt", quote = FALSE, sep = "\t", row.names = FALSE, col.names = TRUE)
+write.table(x = attributes$`Node Attributes`, file = "../Results/Plots/Feeder-Model/node_attributes_feeder.txt", quote = FALSE, sep = "\t", row.names = FALSE, col.names = TRUE)

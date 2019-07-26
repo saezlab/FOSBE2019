@@ -4,9 +4,6 @@ library(CNORode2017)
 library(doParallel)
 library(readr)
 
-argsJob= commandArgs(trailingOnly=TRUE)
-repIndex <- as.numeric(argsJob[1])
-
 # loading the files
 load(file = "../Data/cnolist.RData")
 load(file = "../Data/database.RData")
@@ -22,7 +19,7 @@ ode_parameters=createLBodeContPars(model, LB_n = 1, LB_k = 0,
 # essm
 paramsSSm=defaultParametersSSm()
 paramsSSm$local_solver = "DHC"
-paramsSSm$maxtime = 300;
+paramsSSm$maxtime = 7200;
 paramsSSm$maxeval = Inf;
 paramsSSm$atol=1e-6;
 paramsSSm$reltol=1e-6;
@@ -40,13 +37,13 @@ paramsSSm$SSpenalty_fac=0.1
 paramsSSm$SScontrolPenalty_fac=100
 
 opt_pars=parEstimationLBode(cnolist, model, method="essm", ode_parameters=ode_parameters, paramsSSm=paramsSSm)
-save(opt_pars_initial, file = "opt_pars_initial.RData")
+save(opt_pars_initial, file = "../Results/Best-Solutions/opt_pars_initial.RData")
 
-source(file = "../../Public/map2cys.R")
+source(file = "../Public/map2cys.R")
 attributes = map2cys(model = model, cnolist = cnolist, opt_pars = opt_pars_initial)
 
-write.table(x = attributes$`Edge Attributes`, file = "edge_attributes.txt", quote = FALSE, sep = "\t", row.names = FALSE, col.names = TRUE)
-write.table(x = attributes$`Node Attributes`, file = "node_attributes.txt", quote = FALSE, sep = "\t", row.names = FALSE, col.names = TRUE)
+write.table(x = attributes$`Edge Attributes`, file = "../Results/Plots/Initial-Model/initial_model_edge_attributes.txt", quote = FALSE, sep = "\t", row.names = FALSE, col.names = TRUE)
+write.table(x = attributes$`Node Attributes`, file = "../Results/Plots/Initial-Model/initial_model_node_attributes.txt", quote = FALSE, sep = "\t", row.names = FALSE, col.names = TRUE)
 
 simData = plotLBodeFitness(cnolist = cnolist, model = model, ode_parameters = opt_pars_initial, transfer_function = 4)
-save(simData, file = "simData.RData")
+save(simData, file = "../Results/Best-Solutions/simData_initial.RData")
