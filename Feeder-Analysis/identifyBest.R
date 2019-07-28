@@ -10,8 +10,6 @@ load(file = "../Results/Best-Solutions/opt_pars_initial.RData")
 load(file = "../Data/cnolist.RData")
 load(file = "../Data/model.RData")
 
-# model = preprocessing(data = cnolist, model = pknmodel, compression = TRUE, expansion = FALSE)
-
 source("../Public/aicCNO.R")
 initial = aicCNO(model = model, cnolist = cnolist, opt_pars = opt_pars_initial)
 initialAIC = initial$AIC
@@ -19,7 +17,6 @@ initialBIC = initial$BIC
 rm(opt_pars_initial)
 
 mm = matrix(data = , nrow = 1, ncol = 3)
-# fits = c("1", "2", "5", "10", "20")
 fits = c("1", "5", "10", "20")
 pL = c("1", "2", "3", "4", "Inf")
 penalty = c("2", "5", "10", "50", "100")
@@ -61,5 +58,9 @@ for(ii in 1:nrow(mm)){
   
 }
 
-source("../Public/map2cys.R")
+load(file = "../Results/Best-Solutions/opt_pars_feeder.RData")
 
+source("../Public/map2cys.R")
+attributes = map2cys(model = res$`Integrated-Model`$model, cnolist = res$CNOList, opt_pars = res$Parameters)
+write.table(x = attributes$`Edge Attributes`, file = "../Results/Plots/Feeder-Model/edge_attributes_feeder.txt")
+write.table(x = attributes$`Node Attributes`, file = "../Results/Plots/Feeder-Model/node_attributes_feeder.txt")

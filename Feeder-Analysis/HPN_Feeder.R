@@ -30,7 +30,7 @@ plotModel(model = integratedModel$model, CNOlist = cnolist, indexIntegr = integr
 # essm
 paramsSSm=defaultParametersSSm()
 paramsSSm$local_solver = "DHC"
-paramsSSm$maxtime = 7200;
+paramsSSm$maxtime = 15000;
 paramsSSm$maxeval = Inf;
 paramsSSm$atol=1e-6;
 paramsSSm$reltol=1e-6;
