@@ -63,14 +63,14 @@ runDynamicFeeder <- function(cnolist = cnolist, integratedModel = integratedMode
   paramsSSm$lambda_k = lambda_k
   
   #
-  res = parEstimationLBode(cnolist,model, method="essm", ode_parameters=ode_parameters, paramsSSm=paramsSSm)
+  opt_pars = parEstimationLBode(cnolist,model, method="essm", ode_parameters=ode_parameters, paramsSSm=paramsSSm)
   
   res = list()
   res[[1]] <- opt_pars
-  res[[2]] <- model
+  res[[2]] <- integratedModel
   res[[3]] <- cnolist
   
-  names(res) <- c("Parameters", "Model", "CNOList")
+  names(res) <- c("Parameters", "Integrated-Model", "CNOList")
   
   return(res)
   

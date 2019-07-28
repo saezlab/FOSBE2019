@@ -1,4 +1,4 @@
-map2cys <- function(model = model, cnolist = cnolist, opt_pars = opt_pars, feedInteractionsIDX = NULL){
+map2cys <- function(model = model, cnolist = cnolist, opt_pars = opt_pars){
   
   ##
   # Some initial checks
@@ -13,100 +13,47 @@ map2cys <- function(model = model, cnolist = cnolist, opt_pars = opt_pars, feedI
     stop("model and opt_pars objects do not match !!")
   }
   
-  if(is.null(feedInteractionsIDX)){
+  ##
+  # Assigning edge attributes
+  edgeMatrix = matrix(data = , nrow = length(model$reacID), ncol = 5)
+  colnames(edgeMatrix) = c("Source", "Sign", "Target", "k_param", "n_param")
+  edgeMatrix[, 1] = modelSIF[, 1]
+  edgeMatrix[, 2] = modelSIF[, 2]
+  edgeMatrix[, 3] = modelSIF[, 3]
+  
+  for(ii in 1:nrow(edgeMatrix)){
+    edgeMatrix[ii, 4] = opt_pars$parValues[which(opt_pars$parNames==paste0(edgeMatrix[ii, 1], "_k_", edgeMatrix[ii, 3]))]
+    edgeMatrix[ii, 5] = opt_pars$parValues[which(opt_pars$parNames==paste0(edgeMatrix[ii, 1], "_n_", edgeMatrix[ii, 3]))]
+  }
+  
+  ##
+  # Assigning node attributes
+  nodeMatrix = matrix(data = , nrow = length(model$namesSpecies), ncol = 3)
+  colnames(nodeMatrix) = c("Node", "Status", "tau_param")
+  nodeMatrix[, 1] = model$namesSpecies
+  nodeMatrix[, 2] = "Unmeasured"
+  nodeMatrix[, 3] = "1"
+  
+  for(ii in 1:length(model$namesSpecies)){
     
-    ##
-    # Assigning edge attributes
-    edgeMatrix = matrix(data = , nrow = length(model$reacID), ncol = 5)
-    colnames(edgeMatrix) = c("Source", "Sign", "Target", "k_param", "n_param")
-    edgeMatrix[, 1] = modelSIF[, 1]
-    edgeMatrix[, 2] = modelSIF[, 2]
-    edgeMatrix[, 3] = modelSIF[, 3]
-    
-    for(ii in 1:nrow(edgeMatrix)){
-      edgeMatrix[ii, 4] = opt_pars$parValues[which(opt_pars$parNames==paste0(edgeMatrix[ii, 1], "_k_", edgeMatrix[ii, 3]))]
-      edgeMatrix[ii, 5] = opt_pars$parValues[which(opt_pars$parNames==paste0(edgeMatrix[ii, 1], "_n_", edgeMatrix[ii, 3]))]
+    if(model$namesSpecies[ii]%in%colnames(cnolist@inhibitors)){
+      nodeMatrix[ii, 2] = "Inhibited"
     }
     
-    ##
-    # Assigning node attributes
-    nodeMatrix = matrix(data = , nrow = length(model$namesSpecies), ncol = 3)
-    colnames(nodeMatrix) = c("Node", "Status", "tau_param")
-    nodeMatrix[, 1] = model$namesSpecies
-    nodeMatrix[, 2] = "Unmeasured"
-    nodeMatrix[, 3] = "1"
+    if(model$namesSpecies[ii]%in%colnames(cnolist@stimuli)){
+      nodeMatrix[ii, 2] = "Stimulated"
+    }
     
-    for(ii in 1:length(model$namesSpecies)){
-      
+    if(model$namesSpecies[ii]%in%colnames(cnolist@signals[[1]])){
       if(model$namesSpecies[ii]%in%colnames(cnolist@inhibitors)){
-        nodeMatrix[ii, 2] = "Inhibited"
+        nodeMatrix[ii, 2] = "Inh&Meas"
+      } else {
+        nodeMatrix[ii, 2] = "Measured"
       }
-      
-      if(model$namesSpecies[ii]%in%colnames(cnolist@stimuli)){
-        nodeMatrix[ii, 2] = "Stimulated"
-      }
-      
-      if(model$namesSpecies[ii]%in%colnames(cnolist@signals[[1]])){
-        if(model$namesSpecies[ii]%in%colnames(cnolist@inhibitors)){
-          nodeMatrix[ii, 2] = "Inh&Meas"
-        } else {
-          nodeMatrix[ii, 2] = "Measured"
-        }
-      }
-      
-      if(paste0("tau_", model$namesSpecies[ii])%in%opt_pars$parNames){
-        nodeMatrix[ii, 3] = as.character(opt_pars$parValues[which(opt_pars$parNames==paste0("tau_", nodeMatrix[ii, 1]))])
-      }
-      
     }
     
-  } else {
-    
-    ##
-    # Assigning edge attributes
-    edgeMatrix = matrix(data = , nrow = length(model$reacID), ncol = 6)
-    colnames(edgeMatrix) = c("Source", "Sign", "Target", "k_param", "n_param", "Feed")
-    edgeMatrix[, 1] = modelSIF[, 1]
-    edgeMatrix[, 2] = modelSIF[, 2]
-    edgeMatrix[, 3] = modelSIF[, 3]
-    edgeMatrix[, 6] = rep("PKN Interaction", nrow(edgeMatrix))
-    edgeMatrix[feedInteractionsIDX, 6] = "Feeder Interaction"
-    
-    for(ii in 1:nrow(edgeMatrix)){
-      edgeMatrix[ii, 4] = opt_pars$parValues[which(opt_pars$parNames==paste0(edgeMatrix[ii, 1], "_k_", edgeMatrix[ii, 3]))]
-      edgeMatrix[ii, 5] = opt_pars$parValues[which(opt_pars$parNames==paste0(edgeMatrix[ii, 1], "_n_", edgeMatrix[ii, 3]))]
-    }
-    
-    ##
-    # Assigning node attributes
-    nodeMatrix = matrix(data = , nrow = length(model$namesSpecies), ncol = 3)
-    colnames(nodeMatrix) = c("Node", "Status", "tau_param")
-    nodeMatrix[, 1] = model$namesSpecies
-    nodeMatrix[, 2] = "Unmeasured"
-    nodeMatrix[, 3] = "1"
-    
-    for(ii in 1:length(model$namesSpecies)){
-      
-      if(model$namesSpecies[ii]%in%colnames(cnolist@inhibitors)){
-        nodeMatrix[ii, 2] = "Inhibited"
-      }
-      
-      if(model$namesSpecies[ii]%in%colnames(cnolist@stimuli)){
-        nodeMatrix[ii, 2] = "Stimulated"
-      }
-      
-      if(model$namesSpecies[ii]%in%colnames(cnolist@signals[[1]])){
-        if(model$namesSpecies[ii]%in%colnames(cnolist@inhibitors)){
-          nodeMatrix[ii, 2] = "Inh&Meas"
-        } else {
-          nodeMatrix[ii, 2] = "Measured"
-        }
-      }
-      
-      if(paste0("tau_", model$namesSpecies[ii])%in%opt_pars$parNames){
-        nodeMatrix[ii, 3] = as.character(opt_pars$parValues[which(opt_pars$parNames==paste0("tau_", nodeMatrix[ii, 1]))])
-      }
-      
+    if(paste0("tau_", model$namesSpecies[ii])%in%opt_pars$parNames){
+      nodeMatrix[ii, 3] = as.character(opt_pars$parValues[which(opt_pars$parNames==paste0("tau_", nodeMatrix[ii, 1]))])
     }
     
   }
