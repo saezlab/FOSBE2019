@@ -19,3 +19,10 @@ Here the following Feeder parameters were used: path length limit `pL=Inf`; erro
 
 ## `identifyBest.R`
 Script used to iterate accross all the combinations of Feeder parameters considered and then identifying and saving the one with the best AIC score.
+
++ [1-7]: Loading `R` packages.
++ [9-17]: Estimating the AIC score for the initial model.
++ [19-21]: Combining all the Feeder parameters considered: percentage of worse fitted measurements, maximal path length and penalty factor for the new links.
++ [23-32]: Creating combinations of Feeder parameters.
++ [34-58]: Evaluating the models.
++ [60-70]: Plotting the best integrated model and it's fit.
