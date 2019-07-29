@@ -1,6 +1,6 @@
 library(CellNOptR)
 library(MEIGOR)
-library(CNORode2017)
+library(CNORode)
 library(doParallel)
 library(readr)
 
@@ -8,6 +8,8 @@ library(readr)
 load(file = "../Data/cnolist.RData")
 load(file = "../Data/database.RData")
 load(file = "../Data/model.RData")
+
+set.seed(1510)
 
 # set initial parameters (here parameters 'k' and 'tau' are optimised and 'n' fixed to 3)
 ode_parameters=createLBodeContPars(model, LB_n = 1, LB_k = 0,

@@ -55,6 +55,13 @@ integrateLinks <- function(feederObject = feederObject, cnolist = cnolist, compr
     
     currModel <- preprocessing(data = caseCNO, model = currModel, compression = compression, expansion = expansion)
     curr_sif = model2sif(model = currModel)
+    idx2rem = which(duplicated(x = curr_sif[, c(1, 3)]))
+    if(length(idx2rem) > 0){
+      curr_sif = curr_sif[-idx2rem, ]
+    }
+    write.table(x = curr_sif, file = "temporary_sif.txt", quote = FALSE, sep = " ", row.names = FALSE, col.names = FALSE)
+    currModel <- readSIF(sifFile = "temporary_sif.txt")
+    file.remove("temporary_sif.txt")
     
     reacDiff <- setdiff(currModel$reacID, model$reacID)
     speciesDiff <- setdiff(currModel$namesSpecies, model$namesSpecies)
