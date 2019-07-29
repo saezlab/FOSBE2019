@@ -16,12 +16,6 @@ initialAIC = initial$AIC
 initialBIC = initial$BIC
 rm(opt_pars_initial)
 
-# mm = matrix(data = , nrow = 1, ncol = 3)
-# # fits = c("1", "2", "5", "10", "20")
-# fits = c("1", "5", "10", "20")
-# pL = c("1", "2", "3", "4", "Inf")
-# penalty = c("2", "5", "10", "50", "100")
-
 error = c(0.05, 0.1, 0.2)
 pL = c(2, 3, 4, Inf)
 penalty = c(5, 10, 50, 100)
