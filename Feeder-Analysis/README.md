@@ -13,8 +13,9 @@ Here the following Feeder parameters were used: path length limit `pL=Inf`; erro
 + [25]: Integrating those links to the original PKN.
 + [29-48]: Setting optimization parameters.
 + [51-55]: Setting initial model parameters randomly.
-+ [57-58]: Optimizing model and saving results as an `R` object.
-+ [60-63]: Mapping model parameters as network features and saving them as `.txt` file ready to by visualized in Cytoscape.
++ [57-59]: Optimizing model and saving results as an `R` object.
++ [61-64]: Mapping model parameters as network features and saving them as `.txt` file ready to by visualized in Cytoscape.
++ [66-72]: Saving Feeder fits and plot of the integrated model as pdf's.
 
 ## `identifyBest.R`
 Script used to iterate accross all the combinations of Feeder parameters considered and then identifying and saving the one with the best AIC score.
