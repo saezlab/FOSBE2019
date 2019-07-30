@@ -15,12 +15,12 @@ source("../Public/computeMSE.R")
 source("../Public/computeMI.R")
 source("../Public/runDynamicFeeder.R")
 source("../Public/buildFeederObjectDynamic.R")
-source("../Public/identifyMisfitIndeces.R")
+source("../Public/identifyMisfitIndices.R")
 source("../Public/map2cys.R")
 source("../Public/integrateLinks.R")
 source("../Public/preprocessingWeighted.R")
 
-indeces <- identifyMisfitIndeces(cnolist = cnolist, model = model, simData = simData, mseThresh = 0.05168124) # 0.05168124 = 5% error threshold
+indeces <- identifyMisfitIndices(cnolist = cnolist, model = model, simData = simData, mseThresh = 0.05168124) # 0.05168124 = 5% error threshold
 object <- buildFeederObjectDynamic(model = model, cnolist = cnolist, database = database, indeces = indeces, pathLength = 4)
 integratedModel = integrateLinks(feederObject = object, cnolist = cnolist, compression = TRUE, expansion = FALSE, database = database)
 

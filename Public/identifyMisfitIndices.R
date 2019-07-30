@@ -30,7 +30,7 @@
 #             A thrreshold parameter for minimal misfit to be considered (mseThresh = 0.05 by default)
 #             A method about how to identify the misfits: It can be 'mse' or 'mi' (method = 'mse' by default)
 
-identifyMisfitIndeces <- function(cnolist = cnolist, model = model, simData = simData,  method = "mse", 
+identifyMisfitIndices <- function(cnolist = cnolist, model = model, simData = simData,  method = "mse", 
                                   mseThresh = 0.05, percMI = 0.1, nSplines = 100, nBins = 10, spliningMethod = "fmm"){
   
   
