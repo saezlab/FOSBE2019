@@ -1,7 +1,7 @@
 # Public
 Here are provided all the functions of the Dynamic-Feeder pipeline.
 
-+ `aicCNO.R` takes the prior knowledge network, the data and model parameters as an input in order to estimate the Akaike (AIC) score of that specific model.
++ `aicCNO.R` takes the prior knowledge network, the data and model parameters as an input in order to estimate the Akaike Information Criterion (AIC) score of that specific model.
 + `buildFeederObjectDynamic.R` estimates the possible mechanisms of interactions to be added to the PKN from a database of interactions for improving the fitting cost.
 + `computeMI.R` identifies poorly fitted measurements for specific experimental conditions based on Mutual Information values between simulations and data.
 + `computeMSE.R` identifies poorly fitted measurements for specific experimental conditions based on the Mean Squared Error values between simulations and data.
