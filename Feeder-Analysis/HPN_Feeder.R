@@ -54,6 +54,7 @@ ode_parameters=createLBodeContPars(integratedModel$model, LB_n = 1, LB_k = 0,
                                    default_k = 0.5, default_tau = 0.01, opt_n = FALSE, opt_k = TRUE,
                                    opt_tau = TRUE, random = TRUE)
 
+# Optimizing the integrated network. We set a regularization penalty factor of 5 over the newly integrated links
 res = runDynamicFeeder(cnolist = cnolist, integratedModel = integratedModel, ode_parameters = ode_parameters, penFactor_k = 5, paramsSSm = paramsSSm)
 
 save(res, file = "../Results/Best-Solutions/opt_pars_feeder.RData")
