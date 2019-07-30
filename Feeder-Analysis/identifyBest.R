@@ -32,7 +32,7 @@ for(ii in 1:length(error)){
 mm = mm[-1, ]
 
 idxBestAIC = NULL
-aicBest = 100000
+aicBest = 100000 # Setting an initial aicBest value. This value should be big enough initially so we can compare it with the aic scores of the models we evaluate. 
 aicScores = c()
 for(ii in 1:nrow(mm)){
   
