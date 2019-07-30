@@ -15,7 +15,7 @@
 # $Id$
 
 # This function identifies poorly fitted measurements for specific experimental conditions.
-# It returns a list of possible indeces and mse's pointing to possible connections to be added
+# It returns a list of possible indices and mse's pointing to possible connections to be added
 # during the feeding process -- MSE method
 
 # Inputs:
@@ -116,14 +116,14 @@ computeMSE <- function(cnolist = cnolist, model = model, mseThresh = 0.05, simDa
   
   ##
   # identifying the list of indices indicating at which experiment a measurement is poorly fitted in comparison to the specified threshold
-  indeces <- list()
+  indices <- list()
   for(i in 1:nrow(mse)){
     
     for(j in 1:ncol(mse)){
       
       if((mse[i, j] > mseThresh) && !is.na(mse[i, j])){
         
-        indeces[[length(indeces)+1]] <- c(j, i, mse[i, j])
+        indices[[length(indices)+1]] <- c(j, i, mse[i, j])
         
       }
       
@@ -131,10 +131,10 @@ computeMSE <- function(cnolist = cnolist, model = model, mseThresh = 0.05, simDa
     
   }
   
-  idx <- indeces
+  idx <- indices
   
   ##
-  # returing a list containing the indeces and the mse matrix
+  # returing a list containing the indices and the mse matrix
   if(length(idx) > 0){
     
     idxNames = c()
@@ -147,25 +147,25 @@ computeMSE <- function(cnolist = cnolist, model = model, mseThresh = 0.05, simDa
     
     names(idx) = idxNames
     
-    indeces <- list()
-    indeces[[length(indeces)+1]] <- idx
-    indeces[[length(indeces)+1]] <- mse
+    indices <- list()
+    indices[[length(indices)+1]] <- idx
+    indices[[length(indices)+1]] <- mse
     
-    names(indeces) <- c("indeces", "mse")
+    names(indices) <- c("indices", "mse")
     
-    return(indeces)
+    return(indices)
     
   } else {
     
     print("No measurement error falls within the specified error threshold specified")
     
-    indeces <- list()
-    indeces[[length(indeces)+1]] <- idx
-    indeces[[length(indeces)+1]] <- mse
+    indices <- list()
+    indices[[length(indices)+1]] <- idx
+    indices[[length(indices)+1]] <- mse
     
-    names(indeces) <- c("indeces", "mse")
+    names(indices) <- c("indices", "mse")
     
-    return(indeces)
+    return(indices)
     
   }
   

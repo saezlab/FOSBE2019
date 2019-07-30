@@ -15,7 +15,7 @@
 # $Id$
 
 # This function identifies poorly fitted measurements for specific experimental conditions.
-# It returns a list of possible indeces and mse's pointing to possible connections to be added
+# It returns a list of possible indices and mse's pointing to possible connections to be added
 # during the feeding process
 
 # Inputs:
@@ -43,16 +43,16 @@ identifyMisfitIndices <- function(cnolist = cnolist, model = model, simData = si
     if(method=="mse"){
       
       # source("computeMSE.R")
-      indeces = computeMSE(cnolist = cnolist, model = model, mseThresh = mseThresh, simData = simData)
+      indices = computeMSE(cnolist = cnolist, model = model, mseThresh = mseThresh, simData = simData)
       
-      return(indeces)
+      return(indices)
       
     } else {
       
       # source("computeMI.R")
-      indeces = computeMI(cnolist = cnolist, model = model, simData = simData, percMI = percMI, nSplines = nSplines, nBins = nBins, spliningMethod = spliningMethod)
+      indices = computeMI(cnolist = cnolist, model = model, simData = simData, percMI = percMI, nSplines = nSplines, nBins = nBins, spliningMethod = spliningMethod)
       
-      return(indeces)
+      return(indices)
       
     }
     

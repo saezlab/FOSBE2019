@@ -15,7 +15,7 @@
 # $Id$
 
 # This function identifies poorly fitted measurements for specific experimental conditions.
-# It returns a list of possible indeces and mse's pointing to possible connections to be added
+# It returns a list of possible indices and mse's pointing to possible connections to be added
 # during the feeding process -- MI method
 
 # Inputs:
@@ -149,16 +149,16 @@ computeMI <- function(cnolist = cnolist, model = model, simData = simData, percM
   misFitIdx <- which(x = matMI<=sort(x = matMI, decreasing = TRUE)[round(percMI*nrow(matMI)*ncol(matMI))], arr.ind = TRUE)
   miThresh <- max(matMI[misFitIdx])
   
-  indeces <- list()
+  indices <- list()
   for(i in 1:nrow(matMI)){
     
     for(j in 1:ncol(matMI)){
       
       if((matMI[i, j] <= miThresh) && !is.na(matMI[i, j])){
         
-        indeces[[length(indeces)+1]] <- c(round(j), round(i), matMI[i, j])
-        names(indeces)[length(indeces)] <- names(matMI[i, j])
-        names(indeces[[length(indeces)]]) <- NULL
+        indices[[length(indices)+1]] <- c(round(j), round(i), matMI[i, j])
+        names(indices)[length(indices)] <- names(matMI[i, j])
+        names(indices[[length(indices)]]) <- NULL
         
       }
       
@@ -190,15 +190,15 @@ computeMI <- function(cnolist = cnolist, model = model, simData = simData, percM
   
   colnames(mse) <- cnolist$namesSignals
   
-  idx <- indeces
+  idx <- indices
   
-  indeces <- list()
-  indeces[[length(indeces)+1]] <- idx
-  indeces[[length(indeces)+1]] <- matMI
-  indeces[[length(indeces)+1]] <- mse
+  indices <- list()
+  indices[[length(indices)+1]] <- idx
+  indices[[length(indices)+1]] <- matMI
+  indices[[length(indices)+1]] <- mse
   
-  names(indeces) <- c("indeces", "MI matrix", "mse")
+  names(indices) <- c("indices", "MI matrix", "mse")
   
-  return(indeces)
+  return(indices)
   
 }
