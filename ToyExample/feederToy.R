@@ -51,3 +51,4 @@ paramsSSm$SSpenalty_fac=0
 paramsSSm$SScontrolPenalty_fac=0
 
 opt_pars=parEstimationLBode(cnolist, model, method="essm", ode_parameters=ode_parameters, paramsSSm=paramsSSm)
+simData = plotLBodeFitness(cnolist = cnolist, model = model, ode_parameters = opt_pars, transfer_function = 4)
