@@ -36,5 +36,3 @@ For better understanding we have compartmentalized the execution of the of the D
 
 + The initial training of the original PKN. We can train the original model simply by running `initialAnalysis.R` script [here](https://github.com/saezlab/FOSBE2019/blob/master/Initial-Analysis/initialAnalysis.R).
 + We can then integrate new links to the original PKN and then do the training by running the `HPN_Feeder.R` script found [here](https://github.com/saezlab/FOSBE2019/blob/master/Feeder-Analysis/HPN_Feeder.R)
-
-Alternatively, we show how to run all the Dynamic-Feeder pipeline in one script in this small [ToyExample]
