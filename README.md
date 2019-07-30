@@ -34,5 +34,5 @@ Distributed under the [GNU GPLv3 License](http://www.gnu.org/licenses/gpl-3.0.ht
 
 For better understanding we have compartmentalized the execution of the of the Dynamic-Feeder pipeline into two parts:
 
-+ The initial training of the original PKN. We can train the original model simply by running `initialAnalysis.R` script [here](https://github.com/saezlab/FOSBE2019/blob/master/Initial-Analysis/initialAnalysis.R).
-+ We can then integrate new links to the original PKN and then do the training by running the `HPN_Feeder.R` script found [here](https://github.com/saezlab/FOSBE2019/blob/master/Feeder-Analysis/HPN_Feeder.R)
++ The initial training of the original PKN. We can train the original model simply by running `initialAnalysis.R` script [here](https://github.com/saezlab/FOSBE2019/blob/master/Initial-Analysis/initialAnalysis.R). Through this script we can identify the optimal set of parameters representing dynamic features of the elements in the PKN and we will generate the simulated behaviour of our system for these specific set of parameters. The latter will be used as an input for the Dynamic-Feeder pipeline.
++ We can then integrate new links to the original PKN and then do the training by running the `HPN_Feeder.R` script found [here](https://github.com/saezlab/FOSBE2019/blob/master/Feeder-Analysis/HPN_Feeder.R). This scrip will then identify the new set of optimal parameters for the integrated network.
