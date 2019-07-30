@@ -1,5 +1,5 @@
 # Data
-Here we provide the inputs for the CellNOpt-ODE and the Dynamic-Feeder analysis.
+Here we provide the inputs for the CNORode and the Dynamic-Feeder analysis.
 
 These inputs consist of:
 + A **cnolist.RData** `R` object: Which contains the data obtained from perturbation experiments as described in [Hill et.al.](https://www.nature.com/articles/nmeth.3773)
