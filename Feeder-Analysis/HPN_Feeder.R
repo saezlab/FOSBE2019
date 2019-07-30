@@ -56,9 +56,9 @@ ode_parameters=createLBodeContPars(integratedModel$model, LB_n = 1, LB_k = 0,
 
 res = runDynamicFeeder(cnolist = cnolist, integratedModel = integratedModel, ode_parameters = ode_parameters, penFactor_k = 5, paramsSSm = paramsSSm)
 
-save(res, file = "../Results/Best-Solutions/opt_pars_res_feeder.RData")
+save(res, file = "../Results/Best-Solutions/opt_pars_feeder.RData")
 
-attributes = map2cys(model = res$Model, cnolist = res$CNOList, opt_pars = res$Parameters)
+attributes = map2cys(model = res$`Integrated-Model`$model, cnolist = res$CNOList, opt_pars = res$Parameters)
 
 write.table(x = attributes$`Edge Attributes`, file = "../Results/Plots/Feeder-Model/edge_attributes_feeder.txt", quote = FALSE, sep = "\t", row.names = FALSE, col.names = TRUE)
 write.table(x = attributes$`Node Attributes`, file = "../Results/Plots/Feeder-Model/node_attributes_feeder.txt", quote = FALSE, sep = "\t", row.names = FALSE, col.names = TRUE)
