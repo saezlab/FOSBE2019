@@ -20,8 +20,8 @@ source("../Public/map2cys.R")
 source("../Public/integrateLinks.R")
 source("../Public/preprocessingWeighted.R")
 
-indeces <- identifyMisfitIndices(cnolist = cnolist, model = model, simData = simData, mseThresh = 0.05168124) # 0.05168124 = 5% error threshold
-object <- buildFeederObjectDynamic(model = model, cnolist = cnolist, database = database, indeces = indeces, pathLength = 4)
+indices <- identifyMisfitIndices(cnolist = cnolist, model = model, simData = simData, mseThresh = 0.05168124) # 0.05168124 = 5% error threshold
+object <- buildFeederObjectDynamic(model = model, cnolist = cnolist, database = database, indices = indices, pathLength = 4)
 integratedModel = integrateLinks(feederObject = object, cnolist = cnolist, compression = TRUE, expansion = FALSE, database = database)
 
 plotModel(model = integratedModel$model, CNOlist = cnolist, indexIntegr = integratedModel$integLinksIdx)

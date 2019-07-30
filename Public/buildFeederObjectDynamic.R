@@ -20,13 +20,13 @@
 # Inputs:
 # Mandatory:  A cnolist object containing the data (cnolist)
 #             A model to optimize (model)
-#             An indeces object (i.e. as returned from computeMSE.R function) indicating poor fits
+#             An indices object (i.e. as returned from computeMSE.R function) indicating poor fits
 #             A database of interactions
 # Optional:   A path length parameter for the maximal path length of additional interactions (pathLength = 4 by default)
 #             A path length parameter for the maximal path length of additional interactions between the cues (cuesPathLength = 4 by default)
 #             A loop length parameter for the inference of feedback mechanisms (loopLength = NULL by default)
 
-buildFeederObjectDynamic <- function(model = model, cnolist = cnolist, indeces = indeces, database = database, pathLength = 3, cuesPathLength = NULL, loopLength = NULL){
+buildFeederObjectDynamic <- function(model = model, cnolist = cnolist, indices = indices, database = database, pathLength = 3, cuesPathLength = NULL, loopLength = NULL){
   
   ##
   # Transform path lengs from based on interactions to based on nodes
@@ -48,25 +48,25 @@ buildFeederObjectDynamic <- function(model = model, cnolist = cnolist, indeces =
   ##
   # Identifying the possible links
   modelSIF <- model2sif(model = model)
-  if(length(indeces$indeces) > 0){
-    indeces <- indeces$indeces
+  if(length(indices$indices) > 0){
+    indices <- indices$indices
   } else {
-    indeces <- NULL
+    indices <- NULL
   }
   
   df <- as.data.frame(x = database[, c(1, 3)])
   gg <- graph_from_data_frame(d = df, directed = TRUE)
   adj <- get.adjacency(gg)
   
-  # all shortest paths connecting the measurements with the perturbed cues in the indeces list
+  # all shortest paths connecting the measurements with the perturbed cues in the indices list
   sP_all <- list()
-  if(!is.null(pathLength) && !is.null(indeces)){
+  if(!is.null(pathLength) && !is.null(indices)){
     
-    for(ii in 1:length(indeces)){
+    for(ii in 1:length(indices)){
       
-      measurement <- cnolist$namesSignals[indeces[[ii]][1]]
+      measurement <- cnolist$namesSignals[indices[[ii]][1]]
       
-      inhSet <- cnolist$namesCues[which(cnolist$valueCues[indeces[[ii]][2], ]==1)]
+      inhSet <- cnolist$namesCues[which(cnolist$valueCues[indices[[ii]][2], ]==1)]
       
       if(length(inhSet) > 0){
         
