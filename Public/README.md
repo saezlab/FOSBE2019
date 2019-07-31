@@ -10,5 +10,3 @@ Here are provided all the functions of the Dynamic-Feeder pipeline.
 + `map2cys.R` maps model parameters as network features for better visualization with Cytoscape.
 + `preprocessingWeighted.R` preprocesses the original and integrated PKN based on weights assigned on each edge.
 + `runDynamicFeeder.R` optimizes the integrated model and evaluates the effects of the integrated links.
-
-For more details about the inputs and outputs of the functions, please check the documentation inside the codes.
