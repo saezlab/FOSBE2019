@@ -1,13 +1,13 @@
 # FOSBE2019
 
-Application of Dynamic-Feeder piepline over the HPN-DREAM dataset ([Hill et.al.]((https://www.nature.com/articles/nmeth.3773))).
+Application of Dynamic-Feeder pipeline on the HPN-DREAM dataset ([Hill et.al.]((https://www.nature.com/articles/nmeth.3773))).
 
 ## Organisation of the repository
 
-+ [Data](https://github.com/saezlab/FOSBE2019/tree/master/Data): Here we provide the main inputs of our pipeline: a Prior Knowledge Network (PKN), a CNOlist and an Interaction Database object.
++ [Data](https://github.com/saezlab/FOSBE2019/tree/master/Data): Here we provide the main inputs of our pipeline - a Prior Knowledge Network (PKN), a CNOlist and an Interaction Database object.
 + [Public](https://github.com/saezlab/FOSBE2019/tree/master/Public): Here we provide the main functions of the Dynamic-Feeder pipeline.
-+ [Initial-Analysis](https://github.com/saezlab/FOSBE2019/tree/master/Initial-Analysis): Here we provide the script used for the training of the PKN to the data.
-+ [Feeder-Analysis](https://github.com/saezlab/FOSBE2019/tree/master/Feeder-Analysis): Here we provide with the scripts used for the training of the integrated models and a script used for identifying the best model based on AIC score. By integrated model we are referring to the neworks which have new links identified from the Dynamic-Feeder pipeline and which are integrated to the PKN.
++ [Initial-Analysis](https://github.com/saezlab/FOSBE2019/tree/master/Initial-Analysis): Here we provide the script used for the training of the initial PKN to the data.
++ [Feeder-Analysis](https://github.com/saezlab/FOSBE2019/tree/master/Feeder-Analysis): Here we provide with the scripts used for the training of the integrated models and a script used for identifying the best model based on Akaike Information Criterion (AIC) score. By integrated model we are referring to the neworks which have new links identified from the Dynamic-Feeder pipeline and which are integrated to the initial PKN.
 + [Results](https://github.com/saezlab/FOSBE2019/tree/master/Results): Here we provide the object results together with the plots of the models we trained and the fits we obtained.
 
 + [ToyExample](https://github.com/saezlab/FOSBE2019/tree/master/ToyExample): This is a seperate case study, where the Dynamic-Feeder pipeline has been applied on a simple toy example. This example is to show how to run Dynamic-Feeder in a single execution script.
