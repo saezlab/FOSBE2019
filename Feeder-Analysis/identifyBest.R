@@ -18,7 +18,7 @@ rm(opt_pars_initial)
 
 error = c(0.05, 0.1, 0.2)
 pL = c(1, 2, 3, 4, Inf)
-penalty = c(2, 5, 10, 50, 100)
+penalty = c(5, 10, 50, 100)
 
 mm = matrix(data = , nrow = 1, ncol = 3)
 for(ii in 1:length(error)){
@@ -49,14 +49,9 @@ for(ii in 1:nrow(mm)){
       aicBest = score$AIC
       idxBestAIC = ii
       
-      resBest = res
-      # save(res, file = "../Results/Best-Solutions/opt_pars_feeder.RData")
+      save(res, file = "../Results/Best-Solutions/opt_pars_feeder.RData")
       
     }
-    
-  } else {
-    
-    aicScores = c(aicScores, NA)
     
   }
   
