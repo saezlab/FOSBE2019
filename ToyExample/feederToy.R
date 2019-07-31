@@ -15,10 +15,6 @@ source("../Public/identifyMisfitIndices.R")
 source("../Public/map2cys.R")
 source("../Public/integrateLinks.R")
 source("../Public/preprocessingWeighted.R")
-# source("../Public/getLBodeContObjFunctionWeighted.R")
-# source("../Public/parEstimationLBodeSSmWeighted.R")
-# source("../Public/parEstimationLBodeWeighted.R")
-# sapply(list.files(pattern="[.]R$", path="../Public", full.names=TRUE), source)
 
 # loading the toy example
 data("ToyModel", package="CellNOptR")
