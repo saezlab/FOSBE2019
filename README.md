@@ -10,6 +10,8 @@ Application of Dynamic-Feeder piepline over the HPN-DREAM dataset ([Hill et.al.]
 + [Feeder-Analysis](https://github.com/saezlab/FOSBE2019/tree/master/Feeder-Analysis): Here we provide with the scripts used for the training of the integrated models and a script used for identifying the best model based on AIC score. By integrated model we are referring to the neworks which have new links identified from the Dynamic-Feeder pipeline and which are integrated to the PKN.
 + [Results](https://github.com/saezlab/FOSBE2019/tree/master/Results): Here we provide the object results together with the plots of the models we trained and the fits we obtained.
 
++ [ToyExample](https://github.com/saezlab/FOSBE2019/tree/master/ToyExample): This is a seperate case study, where the Dynamic-Feeder pipeline has been applied on a simple toy example. This example is to show how to run Dynamic-Feeder in a single execution script.
+
 ## Requirements
 
 All network modelling steps were performed in [R](https://www.r-project.org/) v3.5.1 and visualised using [Cytoscape v3.4.](http://chianti.ucsd.edu/cytoscape-3.4.0/)
