@@ -17,8 +17,8 @@ initialBIC = initial$BIC
 rm(opt_pars_initial)
 
 error = c(0.05, 0.1, 0.2)
-pL = c(2, 3, 4, Inf)
-penalty = c(5, 10, 50, 100)
+pL = c(1, 2, 3, 4, Inf)
+penalty = c(1, 2, 5, 10, 50, 100)
 
 mm = matrix(data = , nrow = 1, ncol = 3)
 for(ii in 1:length(error)){
@@ -32,12 +32,12 @@ for(ii in 1:length(error)){
 mm = mm[-1, ]
 
 idxBestAIC = NULL
-aicBest = 100000 # Setting an initial aicBest value. This value should be big enough initially so we can compare it with the aic scores of the models we evaluate. 
+aicBest = 100000
 aicScores = c()
 for(ii in 1:nrow(mm)){
   
   currFile = paste0("../Results/Cluster-Results/res_feeder_", mm[ii, 1], "_", mm[ii, 2], "_", mm[ii, 3], ".RData")
-  if(file.exists(currFile)){
+  if(file.exists(currFile) && mm[ii, 3]!=1 && mm[ii, 3]!=2){
     
     load(file = currFile)
     
