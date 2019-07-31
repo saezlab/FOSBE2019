@@ -3,7 +3,7 @@ Here we show the script which trains the integrated model to data and the one wh
 
 ## `HPN_Feeder.R`
 This is the script which trains the integrated model to the data. The integrated model was built by combining the original PKN with links coming from the database of interactions and which can potentially improve measurement fits.
-Here the following Feeder parameters were used: path length limit `pL=4`; error threshold to evaluate `mseThresh=0.0.05168124` (corresponding to the value at 5% of worst fit); edge penalty factor over the new integrated link equal to `penalty=5`.
+Here the following Feeder parameters were used: path length limit `pL=4`; error threshold to evaluate `mseThresh=0.0.05168124` (corresponding to the value at 5% of the worst fit); edge penalty factor over the new integrated link equal to `penalty=5`.
 
 + [1-7]: Loading the necessary `R` packages.
 + [9-12]: Loading the PKN and the data; the database of interactions; and the simulations of the initial pkn with the best parameters that have been identified in the [Initial-Analysis](https://github.com/saezlab/FOSBE2019/tree/master/Initial-Analysis) directory.
