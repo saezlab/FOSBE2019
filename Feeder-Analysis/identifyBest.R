@@ -18,7 +18,7 @@ rm(opt_pars_initial)
 
 error = c(0.05, 0.1, 0.2)
 pL = c(1, 2, 3, 4, Inf)
-penalty = c(1, 2, 5, 10, 50, 100)
+penalty = c(5, 10, 50, 100)
 
 mm = matrix(data = , nrow = 1, ncol = 3)
 for(ii in 1:length(error)){
@@ -37,7 +37,7 @@ aicScores = c()
 for(ii in 1:nrow(mm)){
   
   currFile = paste0("../Results/Cluster-Results/res_feeder_", mm[ii, 1], "_", mm[ii, 2], "_", mm[ii, 3], ".RData")
-  if(file.exists(currFile) && mm[ii, 3]!=1 && mm[ii, 3]!=2){
+  if(file.exists(currFile)){
     
     load(file = currFile)
     
@@ -66,5 +66,3 @@ dev.off()
 pdf("../Results/Plots/Feeder-Model/Rplot - Integrated Model.pdf")
 plotModel(model = res$`Integrated-Model`$model, CNOlist = res$CNOList, indexIntegr = res$`Integrated-Model`$integLinksIdx)
 dev.off()
-
-save(res, file = "../Results/Best-Solutions/opt_pars_feeder.RData")

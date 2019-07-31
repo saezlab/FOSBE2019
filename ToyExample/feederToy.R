@@ -76,10 +76,6 @@ ode_parameters=createLBodeContPars(integratedModel$model, LB_n = 1, LB_k = 0,
 res = runDynamicFeeder(cnolist = cnolist, integratedModel = integratedModel, ode_parameters = ode_parameters, paramsSSm = paramsSSm, penFactor_k = 2)
 plotLBodeFitness(cnolist = res$CNOList, model = res$`Integrated-Model`$model, ode_parameters = res$Parameters, transfer_function = 4)
 
-## penalty factor of 100
-res = runDynamicFeeder(cnolist = cnolist, integratedModel = integratedModel, ode_parameters = ode_parameters, paramsSSm = paramsSSm, penFactor_k = 100)
-plotLBodeFitness(cnolist = res$CNOList, model = res$`Integrated-Model`$model, ode_parameters = res$Parameters, transfer_function = 4)
-
 ## penalty factor of 100000
 res = runDynamicFeeder(cnolist = cnolist, integratedModel = integratedModel, ode_parameters = ode_parameters, paramsSSm = paramsSSm, penFactor_k = 100000)
 plotLBodeFitness(cnolist = res$CNOList, model = res$`Integrated-Model`$model, ode_parameters = res$Parameters, transfer_function = 4)
