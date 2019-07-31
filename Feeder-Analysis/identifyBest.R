@@ -18,13 +18,8 @@ rm(opt_pars_initial)
 
 error = c(0.05, 0.1, 0.2)
 <<<<<<< HEAD
-<<<<<<< HEAD
 pL = c(1, 2, 3, 4, Inf)
 penalty = c(2, 5, 10, 50, 100)
-=======
-pL = c(2, 3, 4, Inf)
-penalty = c(5, 10, 50, 100)
->>>>>>> parent of eb933e2... Update
 =======
 pL = c(2, 3, 4, Inf)
 penalty = c(5, 10, 50, 100)
