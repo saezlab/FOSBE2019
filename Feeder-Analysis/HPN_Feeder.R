@@ -20,8 +20,8 @@ source("../Public/map2cys.R")
 source("../Public/integrateLinks.R")
 source("../Public/preprocessingWeighted.R")
 
-indices <- identifyMisfitIndices(cnolist = cnolist, model = model, simData = simData, mseThresh = 0.03387843) # 0.03387843 = 10% error threshold
-object <- buildFeederObjectDynamic(model = model, cnolist = cnolist, database = database, indices = indices, pathLength = 2)
+indices <- identifyMisfitIndices(cnolist = cnolist, model = model, simData = simData, mseThresh = 0.05168124) # 0.05168124 = 5% error threshold
+object <- buildFeederObjectDynamic(model = model, cnolist = cnolist, database = database, indices = indices, pathLength = 4)
 integratedModel = integrateLinks(feederObject = object, cnolist = cnolist, compression = TRUE, expansion = FALSE, database = database)
 
 plotModel(model = integratedModel$model, CNOlist = cnolist, indexIntegr = integratedModel$integLinksIdx)
@@ -47,13 +47,14 @@ paramsSSm$bootstrap=F
 paramsSSm$SSpenalty_fac=10
 paramsSSm$SScontrolPenalty_fac=10
 
-set.seed(9895)
+set.seed(4381)
 # set initial parameters 
 ode_parameters=createLBodeContPars(integratedModel$model, LB_n = 1, LB_k = 0,
                                    LB_tau = 0, UB_n = 3, UB_k = 1, UB_tau = 1, default_n = 3,
                                    default_k = 0.5, default_tau = 0.01, opt_n = FALSE, opt_k = TRUE,
                                    opt_tau = TRUE, random = TRUE)
 
+# Optimizing the integrated network. We set a regularization penalty factor of 5 over the newly integrated links
 res = runDynamicFeeder(cnolist = cnolist, integratedModel = integratedModel, ode_parameters = ode_parameters, penFactor_k = 5, paramsSSm = paramsSSm)
 
 save(res, file = "../Results/Best-Solutions/opt_pars_feeder.RData")
